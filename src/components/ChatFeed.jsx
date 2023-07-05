@@ -3,27 +3,29 @@ import MyMessage from "./MyMessage"
 import TheirMessage from "./TheirMessage"
 
 const ChatFeed = (props) => {
-    //
     //console.log(props)
     const {chats,activeChat,userName,messages}=props;
     const chat=chats&& chats[activeChat]
-    console.log(chat,userName,messages)
+    //console.log(chat,userName,messages)
 
     const renderMessages=()=>{
        // console.log(chat)
         const keys=Object.keys(messages);
        //console.log(keys)
        return keys.map((key,index)=>{
-        const message=messages[keys];
+        const message=messages[key];
         const lastMessageKey=index===0?null:keys[index-1];
         const isMyMessage=userName===message.sender.username;
 
         return (
             <div key={`msg_${index}`} style={{width:'100%'}}>
               <div className="message-block">
-                 isMyMessage
+               {
+                  isMyMessage
                  ?<MyMessage message={message}/>
                  :<TheirMessage message={message}  lastmessage={messages[lastMessageKey]}/>
+               }
+
               </div>
               <div className="read-receipts" style={{marginRight:isMyMessage? '18px' : '0px',marginLeft:isMyMessage?'0px':'68px'}}>
               read-receipts

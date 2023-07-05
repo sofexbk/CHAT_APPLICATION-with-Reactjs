@@ -24,7 +24,6 @@ const TheirMessage = ({lastMessage,message}) => {
               </div>
             )
       }
-      
     </div>
   )
 }
